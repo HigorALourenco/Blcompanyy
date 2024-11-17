@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orçamento</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos para a seção do formulário */
+.form-section {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+.form-section h2 {
+    text-align: center;
+    color: #0288d1;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #0288d1;
+}
+
+textarea {
+    resize: none;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    background: #0288d1;
+    color: #fff;
+    padding: 0.8rem;
+    font-size: 1rem;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.btn:hover {
+    background: #01579b;
+}
+
+footer {
+    text-align: center;
+    background: #0288d1;
+    color: #fff;
+    padding: 1rem;
+    margin-top: 2rem;
+    border-radius: 10px 10px 0 0;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1></h1>
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="orcamento.html">Orçamento</a>
+        </nav>
+    </header>
+    <main class="container">
+        <section class="form-section">
+            <h2>Preencha os dados abaixo</h2>
+            <form id="whatsappForm" onsubmit="sendWhatsApp(event)">
+                <div class="form-group">
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" name="name" placeholder="Digite seu nome" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Telefone:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(XX) XXXXX-XXXX" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="service">Serviço de Interesse:</label>
+                    <select id="service" name="service" required>
+                        <option value="" disabled selected>Escolha uma opção</option>
+                        <option value="construção">Construção de Piscinas</option>
+                        <option value="alvenaria">Alvenaria</option>
+                        <option value="vinil">Vínil</option>
+                        <option value="fibra">Fibra</option>
+                        <option value="aquecedor">Aquecedor</option>
+                        <option value="sauna">Sauna</option>
+                        <option value="caça-vazamento">Caça-vazamento</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Mensagem:</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Escreva sua mensagem aqui..." required></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Enviar via WhatsApp</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Bl Companyy. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function sendWhatsApp(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            // Captura os valores do formulário
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+
+            // Monta a mensagem para o WhatsApp
+            const whatsappMessage = `
+                *Orçamento solicitado!*
+                *Nome:* ${name}
+                *E-mail:* ${email}
+                *Telefone:* ${phone}
+                *Serviço:* ${service}
+                *Mensagem:* ${message}
+            `.trim();
+
+            // Substitua o número abaixo pelo número do WhatsApp que receberá as mensagens
+            const whatsappNumber = "5511948174784"; // Ex.: 5511999999999
+
+            // Cria o link do WhatsApp
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+            // Redireciona o usuário para o WhatsApp
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+</body>
+</html>
